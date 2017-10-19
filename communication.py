@@ -6,7 +6,7 @@ class Communication():
 
    @classmethod
    def get_donnees(self):
-      return (0,0,0)
+      return (0,0,10)
 
    @classmethod
    def set_donnees(self,x,y,theta):

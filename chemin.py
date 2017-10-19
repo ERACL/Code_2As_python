@@ -1,16 +1,19 @@
 import time
-
+from fonction_chemin_grossier import *
+from config import *
 class Chemin():
-   from fonction_chemin_grossier import *
+   
    def __init__(self,carte, position_ini, position_fin):
+      self.carte = carte
       self.P1 = (position_ini[0],position_ini[1])
       self.P2 = (position_fin[0],position_fin[1])
+      print(self.P1,self.P2)
       self.angle_ini = position_ini[2]
       self.angle_fin = position_fin[2]
       self.chemin = self.calcul_chemin()
-      self.carte = carte
+
    
-   def calcul_chemin(self,P1,P2):
+   def calcul_chemin(self):
       dx = Config().get_dx()
       chemin = self.chemin_grossier()
       try:
@@ -36,7 +39,7 @@ class Chemin():
       return trajet
 
    def chemin_grossier(self):
-      return fonction_chemin_grossier(self.P1,self.P2,self.carte)
+      return fonction_chemin_grossier(self.P1,self.P2,self.carte.get_map())
    
    def get_chemin(self):
       return self.chemin

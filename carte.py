@@ -1,3 +1,7 @@
+
+from config import *
+from communication import *
+
 class Carte():
    
    def __init__(self):
@@ -11,11 +15,11 @@ class Carte():
    def init_obstacle(self):
       """Cette fonction a pour objectif de placer les obstacles qui sont fixes et permanent sur la carte"""
 
-   def entretien(self)
+   def entretien(self):
       """entretien retire tous les obstacles temporaires de la carte"""
       for obstacle in liste_obstacle:
          if (obstacle.get_temp() == True):
-            obstacle.del()
+            del obstacle
       return None
    
    def verification(self,P1,P2):
@@ -80,5 +84,8 @@ class Carte():
          for j in range(P3[1],P4[1]+1):
             self.map()[i][j] = 0
       return None
+   
+   def get_map(self):
+      return self.map
 
     

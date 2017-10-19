@@ -1,3 +1,4 @@
+from math import sqrt
 def fonction_chemin_grossier(depart, arrivee, Map):
    """L'objectif de cette fonction est de trouver le déplacement global du robot. Il est ici assimilé à une case carrée."""
    
@@ -9,7 +10,8 @@ def fonction_chemin_grossier(depart, arrivee, Map):
    
    fin = []
    #fin stockera les coordonnées finales du point de rencontre
-   
+   X = len(Map)
+   Y =  len(Map[0])
    compteur = 0
    stop = False
    Map[depart[0]][depart[1]] = 0

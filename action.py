@@ -1,3 +1,6 @@
+from deplacement import *
+from communication import *
+import time
 class Action():
    
    def __init__(self,robot,position,action,carte):
@@ -9,6 +12,7 @@ class Action():
    def executer(self):
       """Execute l'action"""
       self.deplacer()
+      self.verifier_et_corriger()
       self.action_a_realiser()
    
    def action_a_realiser(self):
@@ -17,7 +21,7 @@ class Action():
    
    def deplacer(self):
       """deplacer gere le deplacement du robot à l'endroit ou l'action doit etre realisee"""
-      Deplacement(self.robot,self.position)
+      Deplacement(self.robot,self.position,self.carte)
       test = self.verifier_et_corriger()
       #On peut placer ici un time pour vérifier que le déplacement ne prenne pas trop de temps
       while (test != "bien place"):
@@ -28,11 +32,12 @@ class Action():
                assert test == "angle faux"
             except AssertionError:
                print("La valeur de test n'est pas cohérente, elle vaut ",test)
-            theta_robot = robot.get_donnees()[2]
+            theta_robot = self.robot.get_donnees()[2]
             theta = theta_robot - self.position[2]
             if (theta<0):
                theta += 360
             Communication().tourner(theta)
+            test = self.verifier_et_corriger()
       return None
    
    def verifier_et_corriger(self):
@@ -43,7 +48,7 @@ class Action():
       x_action = self.position[0]
       y_action = self.position[1]
       theta_action = self.position[2]
-      delta_x = x_acton-donnees[0]
+      delta_x = x_action-donnees[0]
       delta_y = y_action-donnees[1]
       delta_theta = theta_action-donnees[2]
       if sqrt(delta_x**2+delta_y**2)>precision:

@@ -4,7 +4,6 @@ import os
 
 class Config():
    
-
    fichier = open("config.cfg", "r")
    ligne = fichier.read().split("\n")
    for i in range(len(ligne)-1):
@@ -45,7 +44,7 @@ class Config():
          except AssertionError:
             print("Le fichier de configuration a ete mal encodé")
    dx = longueur_terrain/X
-   Y = largeur_terrain/dx
+   Y = int(largeur_terrain/dx)
    
 
    def __init__(self):

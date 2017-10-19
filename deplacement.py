@@ -1,14 +1,16 @@
-
+from chemin import *
 class Deplacement():
    
    def __init__(self,robot,position_fin,carte):
-      self.position_fin = position_fin #P2 est la destination du déplacement
-      self.position_ini = robot.get_donnes()
-      self.chemin = Chemin(carte,position_ini,position_fin)
+      self.position_fin = position_fin 
+      self.position_ini = robot.get_donnees()
+      print(self.position_fin)
+      self.chemin = Chemin(carte,self.position_ini,self.position_fin)
       self.robot = robot
    
       
    def tourner(self,theta_ini,theta_fin):
+      """Met tout en oeuvre pour orienter le robot dans le bon sens"""
       theta = theta_fin - theta_ini
       if (theta<0):
          theta += 360 #La convention de communication est un angle entre 0 et 360
@@ -43,7 +45,7 @@ class Deplacement():
       self.tourner(donnes[2],theta)
       Communication().avancer(deplacement[1])
        
-   def aller_a(self)
+   def aller_a(self):
       precision = Config().get_precision()
       trajet = self.chemin.get_chemin()
       for k in trajet :
