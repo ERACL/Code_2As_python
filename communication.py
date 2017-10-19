@@ -1,5 +1,8 @@
 class Communication():
 
+#LA CLASSE COMMUNICATION DOIT VERIFIER QUE LE ROBOT EST EN ETAT D'AVANCER !!!!!!!!
+   def __init__(self):
+      return None
 
    @classmethod
    def get_donnees(self):
@@ -15,6 +18,10 @@ class Communication():
 
    @classmethod
    def avancer(self,angle):
+      return None
+
+   @classmethod
+   def reculer(self,angle):
       return None
 
    @classmethod

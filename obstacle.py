@@ -7,9 +7,11 @@ class obstacle():
       self.temp = temp
       self.P1 = P1
       self.P2 = P2
-      carte.ajouter_obs(P1,P2)
+      carte.ajouter_obs(self,P1,P2)
    
    def __del__(self,carte):
-      carte.retirer_obs()
+      carte.retirer_obs(self.P1,self.P2)
       return None
    
+   def get_temp(self):
+      return self.temp

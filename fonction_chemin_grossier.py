@@ -1,6 +1,6 @@
-def fonction_chemin_grossier(depart, arrivee):
+def fonction_chemin_grossier(depart, arrivee, Map):
    """L'objectif de cette fonction est de trouver le déplacement global du robot. Il est ici assimilé à une case carrée."""
-   global Map
+   
    L1 = [depart]
    # Listes des dernières cases à points positifs que l'on a visirées
    

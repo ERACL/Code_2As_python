@@ -5,7 +5,18 @@ class Carte():
       self.Y = Config().get_Y()
       self.map = [[0 for i in range(self.Y)] for j in range(self.X) ]
       self.map_vrai =  [[0 for i in range(self.Y)] for j in range(self.X) ] #map_vrai permet de stocker les endroits réels des obstacles
-      
+      self.liste_obstacle = []
+      self.init_obstacle()
+
+   def init_obstacle(self):
+      """Cette fonction a pour objectif de placer les obstacles qui sont fixes et permanent sur la carte"""
+
+   def entretien(self)
+      """entretien retire tous les obstacles temporaires de la carte"""
+      for obstacle in liste_obstacle:
+         if (obstacle.get_temp() == True):
+            obstacle.del()
+      return None
    
    def verification(self,P1,P2):
       """Vérifie la présence d'un obstacle dans le rectangle P1 P2"""
@@ -17,8 +28,14 @@ class Carte():
                return False
       return True
 
-   def ajouter_obs(self,P1,P2):
-      global longueur_du_robot,ecart_de_surete, longueur_terrain, largeur_terrain, dx
+   def ajouter_obs(self,obstacle,P1,P2):
+      """Fonction qui realise toutes les procedures pour retirer un obstacle"""
+      longueur_du_robot = Config().get_longueur_du_robot()
+      ecart_de_surete = Config().get_ecart_de_surete()
+      longueur_terrain = Config().get_longueur_terrain()
+      largeur_terrain = Config().get_largeur_terrain()
+      dx = Config().get_dx()
+      self.liste_obstacle.append(obstacle)
       #On écrit d'abord dans map_vrai les vraies positions de l'obstacle
       P3 = (min(P1[0],P2[0]),min(P1[1],P2[1]))
       P4 = (max(P1[0],P2[0]),max(P1[1],P2[1]))
@@ -39,7 +56,12 @@ class Carte():
       return None
    
    def retirer_obs(self,P1,P2):
-      global longueur_du_robot,ecart_de_surete, longueur_terrain, largeur_terrain, dx
+      """pour retirer un obstacle, ne pas utiliser cette fonction mais la commande obstacle.del()"""
+      longueur_du_robot = Config().get_longueur_du_robot()
+      ecart_de_surete = Config().get_ecart_de_surete()
+      longueur_terrain = Config().get_longueur_terrain()
+      largeur_terrain = Config().get_largeur_terrain()
+      dx = Config().get_dx()
       #On retire d'abord dans map_vrai les vraies positions de l'obstacle
       P3 = (min(P1[0],P2[0]),min(P1[1],P2[1]))
       P4 = (max(P1[0],P2[0]),max(P1[1],P2[1]))

@@ -4,14 +4,15 @@ class Robot(threading.Thread):
    def __init__(self):
       threading.Thread.__init__(self)
       if (True):  #Mettre un test pour savoir si on commence à droite
-         x = Communication().get_x_init_d()
-         y = Communication().get_y_init_d()
-         theta = Communication().get_theta_init_d()
+         self.x = Communication().get_x_init_d()
+         self.y = Communication().get_y_init_d()
+         self.theta = Communication().get_theta_init_d()
       else:
-         x = Communication().get_x_init_g()
-         y = Communication().get_y_init_g()
-         theta = Communication().get_theta_init_g()
+         self.x = Communication().get_x_init_g()
+         self.y = Communication().get_y_init_g()
+         self.theta = Communication().get_theta_init_g()
       Communication().set_donnes(x,y,theta)
+      self.etat = True
       
    def run(self):
       time.sleep(0.1)
@@ -34,5 +35,8 @@ class Robot(threading.Thread):
    def redemarrage_robot(self):
       Communcation().play()
       return None
+   
+   def get_donnees(self):
+      return (self.x,self.y,self.theta)
 
 

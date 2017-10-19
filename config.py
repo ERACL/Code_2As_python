@@ -7,7 +7,6 @@ class Config():
 
    fichier = open("config.cfg", "r")
    ligne = fichier.read().split("\n")
-   print("passage")
    for i in range(len(ligne)-1):
       k = ligne[i]
       L = k.split(" = ")
@@ -36,6 +35,10 @@ class Config():
          y_init_d = int(L[1])
       elif L[0] == "theta_init_d" : #X et Y sont la taille de la carte
          theta_init_d = int(L[1])
+      elif L[0] == "precision":
+         precision = int(L[1])
+      elif L[0] == "precision_theta":
+         precision_theta = int(L[1])
       else:
          try:
             assert True==False
@@ -103,4 +106,12 @@ class Config():
    @classmethod
    def get_theta_init_g(self):
       return self.theta_init_g
+   
+   @classmethod
+   def get_precision(self):
+      return self.precision
+
+   @classmethod
+   def get_precision_theta(self):
+      return self.precision_theta
    

@@ -5,4 +5,5 @@ import time
 import threading
 
 config = Config()
-com = Commuication()
+print(Config().get_dx())
+com = Communication()
