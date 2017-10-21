@@ -1,4 +1,5 @@
 from action import *
+import time
 class Parcours():
    def __init__(self,robot,carte):
       self.robot = robot

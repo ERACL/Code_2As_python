@@ -4,7 +4,6 @@ class Deplacement():
    def __init__(self,robot,position_fin,carte):
       self.position_fin = position_fin 
       self.position_ini = robot.get_donnees()
-      print(self.position_fin)
       self.chemin = Chemin(carte,self.position_ini,self.position_fin)
       self.robot = robot
    

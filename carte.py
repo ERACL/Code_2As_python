@@ -1,6 +1,7 @@
 
 from config import *
 from communication import *
+from obstacle import *
 
 class Carte():
    
@@ -14,12 +15,29 @@ class Carte():
 
    def init_obstacle(self):
       """Cette fonction a pour objectif de placer les obstacles qui sont fixes et permanent sur la carte"""
+      fichier = open("obstacles.cfg", "r")
+      ligne = fichier.read().split("\n")
+      dx = Config().get_dx()
+      P1, P2 = None, None
+      try:
+         for k in range(len(ligne)-1):
+            donnees = ligne[k].split(",")
+            P1 = (int(int(donnees[0])*dx),int(int(donnees[1])*dx))
+            P2 = (int(int(donnees[2])*dx),int(int(donnees[3])*dx)) 
+            self.liste_obstacle.append(Obstacle(self,P1,P2,False))
+      except:
+         print("le fichier des obstacles a été mal édité")
+      return None
 
    def entretien(self):
       """entretien retire tous les obstacles temporaires de la carte"""
+      liste_obstacle = []
       for obstacle in liste_obstacle:
          if (obstacle.get_temp() == True):
             del obstacle
+         else:
+            liste_obstacle.append(obstacle)
+      self.liste_obstacle = liste_obstacle
       return None
    
    def verification(self,P1,P2):
@@ -45,7 +63,7 @@ class Carte():
       P4 = (max(P1[0],P2[0]),max(P1[1],P2[1]))
       for i in range(P3[0],P4[0]+1):
          for j in range(P3[1],P4[1]+1):
-            self.map_vrai()[i][j] = 0.5
+            self.map_vrai[i][j] = 0.5
       #On écrit ensuite les positions de l'obstacle en prenant en compte l'écart de sécurité et la largeur du robot
       L = longueur_du_robot+ecart_de_surete
       P3 = (max(P1[0],P2[0]),max(P1[1],P2[1]))
@@ -56,7 +74,7 @@ class Carte():
       P4 = (int(P4[0]/dx),int(P4[1]/dx))
       for i in range(P3[0],P4[0]+1):
          for j in range(P3[1],P4[1]+1):
-            self.map()[i][j] = 0.5
+            self.map[i][j] = 0.5
       return None
    
    def retirer_obs(self,P1,P2):
@@ -71,7 +89,7 @@ class Carte():
       P4 = (max(P1[0],P2[0]),max(P1[1],P2[1]))
       for i in range(P3[0],P4[0]+1):
          for j in range(P3[1],P4[1]+1):
-            self.map_vrai()[i][j] = 0
+            self.map_vrai[i][j] = 0
       #On retire ensuite les positions de l'obstacle en prenant en compte l'écart de sécurité et la largeur du robot
       L = longueur_du_robot+ecart_de_surete
       P3 = (max(P1[0],P2[0]),max(P1[1],P2[1]))
@@ -82,7 +100,7 @@ class Carte():
       P4 = (int(P4[0]/dx),int(P4[1]/dx))
       for i in range(P3[0],P4[0]+1):
          for j in range(P3[1],P4[1]+1):
-            self.map()[i][j] = 0
+            self.map[i][j] = 0
       return None
    
    def get_map(self):

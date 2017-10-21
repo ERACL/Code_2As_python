@@ -1,3 +1,4 @@
+import time
 class Communication():
 
 #LA CLASSE COMMUNICATION DOIT VERIFIER QUE LE ROBOT EST EN ETAT D'AVANCER !!!!!!!!
@@ -18,6 +19,7 @@ class Communication():
 
    @classmethod
    def avancer(self,angle):
+      print("coucou")
       return None
 
    @classmethod

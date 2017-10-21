@@ -17,12 +17,11 @@ class Robot(Thread):
          self.theta = Config().get_theta_init_g()
       Communication().set_donnees(self.x,self.y,self.theta)
       self.etat = True
+      self.on = True
       
    def run(self):
       tini = time.time()
-      tfin = tini
-      while (tfin - tini < 100):
-         print("coucou")
+      while (self.on):
          time.sleep(0.1)
          donnees = Communication().get_donnees()
          self.x, self.y,self.theta = donnees[0],donnees[1],donnees[2]
@@ -46,5 +45,10 @@ class Robot(Thread):
    
    def get_donnees(self):
       return (self.x,self.y,self.theta)
+   
+   def stop(self):
+      self.on = False
+      return None
+      
 
 
